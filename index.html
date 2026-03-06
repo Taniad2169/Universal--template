@@ -796,6 +796,7 @@
         const backToForm = document.getElementById('backToForm');
         const header = document.getElementById('pageHeader');
         const PHONE_NUMBER = "5164441448";
+        const SHARE_URL = "https://taniad2169.github.io/Universal--template/#form";
         let isMobile = window.innerWidth <= 900;
         
         function updateMobileView() {
@@ -903,19 +904,19 @@
             }
         });
         
-        // Share button functionality
+        // Share button functionality with your specific URL
         document.getElementById('shareBtn').addEventListener('click', function() {
-            const url = window.location.href;
             if (navigator.share) {
                 navigator.share({
                     title: 'Universal Template',
                     text: 'Check out this awesome template!',
-                    url: url
-                }).catch(() => {
-                    copyToClipboard(url);
+                    url: SHARE_URL
+                }).catch((error) => {
+                    console.log('Share cancelled or failed:', error);
+                    copyToClipboard(SHARE_URL);
                 });
             } else {
-                copyToClipboard(url);
+                copyToClipboard(SHARE_URL);
             }
         });
         
