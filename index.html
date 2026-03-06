@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Universal Template Masterpiece</title>
+    <title>Universal Custom Design Template | Premium Handcrafted Solution</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <meta name="theme-color" content="#2C3E50">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Universal Template">
-    <meta name="description" content="Professional services">
+    <meta name="apple-mobile-web-app-title" content="Universal Custom Design">
+    <meta name="description" content="Premium handcrafted universal template with custom design, smooth animations, and professional functionality">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* Spotlight beam */
+        /* Spotlight beam - Custom designed animation */
         body::before {
             content: '';
             position: fixed;
@@ -51,13 +51,13 @@
                 rgba(255, 255, 255, 0.3) 72%,
                 transparent 90%
             );
-            animation: spotlight 8s linear infinite;
+            animation: customSpotlight 8s linear infinite;
             pointer-events: none;
             z-index: 1000;
             transform: skewX(-12deg);
         }
 
-        @keyframes spotlight {
+        @keyframes customSpotlight {
             0%   { left: -80%; }
             100% { left: 150%; }
         }
@@ -71,11 +71,11 @@
             box-shadow: 0 30px 60px rgba(44, 62, 80, 0.15);
             border: 8px solid transparent;
             border-image: linear-gradient(45deg, #95a5a6, #2C3E50, #7f8c8d) 1;
-            animation: borderGlow 3s infinite alternate;
+            animation: customBorderGlow 3s infinite alternate;
             position: relative;
         }
 
-        @keyframes borderGlow {
+        @keyframes customBorderGlow {
             0%   { border-image-source: linear-gradient(45deg, #95a5a6, #2C3E50, #7f8c8d); }
             50%  { border-image-source: linear-gradient(45deg, #2C3E50, #7f8c8d, #95a5a6); }
             100% { border-image-source: linear-gradient(45deg, #7f8c8d, #2C3E50, #95a5a6); }
@@ -83,9 +83,10 @@
         
         .header {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             background: linear-gradient(90deg, #95a5a6 0%, #2C3E50 38%, #34495e 50%, #2C3E50 62%, #95a5a6 100%);
             color: white;
             position: relative;
@@ -99,21 +100,60 @@
             top: 0; left: -100%;
             width: 60%; height: 100%;
             background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
-            animation: headerShine 6s ease-in-out infinite;
+            animation: customHeaderShine 6s ease-in-out infinite;
             pointer-events: none;
         }
         
-        @keyframes headerShine {
+        @keyframes customHeaderShine {
             0%   { left: -100%; }
             100% { left: 150%; }
         }
         
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             text-align: center;
             z-index: 2;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
             letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            z-index: 2;
+            opacity: 0.9;
+            max-width: 600px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .header .subtitle i {
+            margin: 0 5px;
+            color: #f1c40f;
+        }
+        
+        .craftsmanship-badge {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+        
+        .craftsmanship-badge i {
+            color: #f1c40f;
+            margin-right: 8px;
         }
         
         /* Mobile Navigation */
@@ -538,7 +578,20 @@
             }
             
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+            
+            .craftsmanship-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 15px;
+                display: inline-block;
             }
             
             .mobile-nav {
@@ -582,11 +635,15 @@
         
         @media (max-width: 480px) {
             .header {
-                padding: 20px 15px;
+                padding: 30px 15px;
             }
             
             .header h1 {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
+            }
+            
+            .header .subtitle {
+                font-size: 0.9rem;
             }
             
             .panel {
@@ -617,7 +674,13 @@
 <body>
     <div class="master-container">
         <div class="header" id="pageHeader">
-            <h1>Universal Template</h1>
+            <div class="craftsmanship-badge">
+                <i class="fas fa-gem"></i> HANDCRAFTED WITH LOVE
+            </div>
+            <h1>Universal Custom Design Template</h1>
+            <div class="subtitle">
+                <i class="fas fa-star"></i> Premium Handcrafted Solution <i class="fas fa-star"></i>
+            </div>
         </div>
         
         <div class="mobile-nav">
@@ -908,8 +971,8 @@
         document.getElementById('shareBtn').addEventListener('click', function() {
             if (navigator.share) {
                 navigator.share({
-                    title: 'Universal Template',
-                    text: 'Check out this awesome template!',
+                    title: 'Universal Custom Design Template',
+                    text: 'Premium handcrafted universal template with custom design, smooth animations, and professional functionality',
                     url: SHARE_URL
                 }).catch((error) => {
                     console.log('Share cancelled or failed:', error);
