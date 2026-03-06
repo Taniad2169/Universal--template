@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Universal Template Masterpiece</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <meta name="theme-color" content="#2C3E50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Universal Template">
+    <meta name="description" content="Professional services">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 38%, #bdc3c7 50%, #e4e7eb 62%, #f5f7fa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Spotlight beam */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%;
+            left: -80%;
+            width: 45%;
+            height: 120%;
+            background: linear-gradient(
+                105deg,
+                transparent 10%,
+                rgba(255, 255, 255, 0.3) 28%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0.3) 72%,
+                transparent 90%
+            );
+            animation: spotlight 8s linear infinite;
+            pointer-events: none;
+            z-index: 1000;
+            transform: skewX(-12deg);
+        }
+
+        @keyframes spotlight {
+            0%   { left: -80%; }
+            100% { left: 150%; }
+        }
+        
+        .master-container {
+            max-width: 1400px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(44, 62, 80, 0.15);
+            border: 8px solid transparent;
+            border-image: linear-gradient(45deg, #95a5a6, #2C3E50, #7f8c8d) 1;
+            animation: borderGlow 3s infinite alternate;
+            position: relative;
+        }
+
+        @keyframes borderGlow {
+            0%   { border-image-source: linear-gradient(45deg, #95a5a6, #2C3E50, #7f8c8d); }
+            50%  { border-image-source: linear-gradient(45deg, #2C3E50, #7f8c8d, #95a5a6); }
+            100% { border-image-source: linear-gradient(45deg, #7f8c8d, #2C3E50, #95a5a6); }
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            background: linear-gradient(90deg, #95a5a6 0%, #2C3E50 38%, #34495e 50%, #2C3E50 62%, #95a5a6 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 20px;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%; height: 100%;
+            background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            animation: headerShine 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes headerShine {
+            0%   { left: -100%; }
+            100% { left: 150%; }
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            z-index: 2;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            padding: 15px;
+            gap: 10px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+        }
+        
+        .mobile-nav-btn {
+            flex: 1;
+            background: linear-gradient(45deg, #95a5a6, #2C3E50);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.15);
+        }
+        
+        .mobile-nav-btn.active {
+            background: linear-gradient(45deg, #2C3E50, #34495e);
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(44, 62, 80, 0.25);
+        }
+        
+        /* Panels Wrapper */
+        .panels-wrapper {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-height: 700px;
+        }
+        
+        .panel {
+            width: 50%;
+            flex-shrink: 0;
+            padding: 40px;
+            background: #ffffff;
+        }
+        
+        .form-panel {
+            border-right: 3px dashed rgba(149, 165, 166, 0.3);
+        }
+        
+        .panel-title {
+            color: #2C3E50;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid;
+            border-image: linear-gradient(90deg, #95a5a6, #2C3E50, #7f8c8d) 1;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 1rem;
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+            color: #1e293b;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #64748b;
+            box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Button Styles */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            background: linear-gradient(45deg, #95a5a6, #2C3E50);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(44, 62, 80, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(45deg, #2C3E50, #34495e);
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.25);
+        }
+        
+        .action-btn.secondary {
+            background: #e2e8f0;
+            color: #475569;
+        }
+        
+        .action-btn.secondary:hover {
+            background: #cbd5e1;
+            color: #1e293b;
+            transform: translateY(-3px);
+        }
+        
+        .btn-group .action-btn {
+            margin: 0;
+            flex: 1;
+        }
+        
+        /* Footer Buttons */
+        .form-footer {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .footer-btn {
+            background: linear-gradient(45deg, #95a5a6, #2C3E50);
+            color: white;
+            border: none;
+            padding: 16px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .footer-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(45deg, #2C3E50, #34495e);
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.25);
+        }
+        
+        .footer-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .footer-btn.call-btn {
+            background: linear-gradient(45deg, #2C3E50, #34495e);
+        }
+        
+        .footer-btn.share-btn {
+            background: linear-gradient(45deg, #64748b, #475569);
+        }
+        
+        .footer-btn.website-btn {
+            background: linear-gradient(45deg, #475569, #2C3E50);
+        }
+        
+        /* Items Section */
+        .items-container {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(149, 165, 166, 0.3);
+        }
+        
+        /* Dropdown Menu for Items */
+        .estimate-dropdown-container {
+            margin-bottom: 30px;
+        }
+        
+        .estimate-label {
+            display: block;
+            color: #2C3E50;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .estimate-select {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+            border: 3px solid #e2e8f0;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #2C3E50;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C3E50'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 30px;
+        }
+        
+        .estimate-select:hover {
+            border-color: #95a5a6;
+            box-shadow: 0 0 0 4px rgba(149, 165, 166, 0.2);
+        }
+        
+        .estimate-select:focus {
+            outline: none;
+            border-color: #2C3E50;
+            box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.15);
+        }
+        
+        .add-item-btn {
+            background: white;
+            color: #2C3E50;
+            border: 2px solid #2C3E50;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .add-item-btn:hover {
+            background: #2C3E50;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Selected Items List */
+        .selected-items-list {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .selected-items-list h4 {
+            color: #2C3E50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #475569;
+        }
+        
+        .selected-item:last-child {
+            border-bottom: none;
+        }
+        
+        .selected-item .item-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .selected-item .item-name {
+            font-weight: 500;
+        }
+        
+        .selected-item .item-price {
+            font-weight: bold;
+            color: #2C3E50;
+        }
+        
+        .remove-item {
+            color: #ef4444;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .remove-item:hover {
+            background: #fee2e2;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 3px solid #2C3E50;
+            font-weight: bold;
+            color: #2C3E50;
+            font-size: 1.3rem;
+        }
+        
+        /* Estimate Display */
+        .estimate-display {
+            background: linear-gradient(135deg, #2C3E50, #34495e);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.2);
+        }
+        
+        .estimate-amount {
+            font-size: 2.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .reset-btn {
+            background: #e2e8f0;
+            color: #475569;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .reset-btn:hover {
+            background: #cbd5e1;
+            color: #1e293b;
+        }
+        
+        .mobile-back-btn {
+            background: linear-gradient(45deg, #95a5a6, #2C3E50);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px auto;
+            max-width: 250px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .mobile-back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2);
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            body {
+                padding: 10px;
+            }
+            
+            .master-container {
+                border-radius: 20px;
+                border-width: 4px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-nav {
+                display: flex;
+            }
+            
+            .panels-wrapper {
+                width: 200%;
+            }
+            
+            .panel {
+                width: 50%;
+                padding: 20px;
+            }
+            
+            .form-panel {
+                border-right: none;
+            }
+            
+            .panel-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .items-container {
+                padding: 20px;
+            }
+            
+            .estimate-amount {
+                font-size: 2rem;
+            }
+            
+            .mobile-back-btn {
+                display: flex;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .panel {
+                padding: 15px;
+            }
+            
+            .panel-title {
+                font-size: 1.3rem;
+            }
+            
+            .estimate-select {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .estimate-amount {
+                font-size: 1.8rem;
+                padding: 8px 20px;
+            }
+            
+            .footer-btn {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="master-container">
+        <div class="header" id="pageHeader">
+            <h1>Universal Template</h1>
+        </div>
+        
+        <div class="mobile-nav">
+            <button class="mobile-nav-btn active" id="navToForm">
+                <i class="fas fa-question-circle"></i> Question Form
+            </button>
+            <button class="mobile-nav-btn" id="navToItems">
+                <i class="fas fa-calculator"></i> Estimate
+            </button>
+        </div>
+        
+        <div class="panels-wrapper" id="panelsWrapper">
+            <!-- Left Panel - Question Form -->
+            <div class="panel form-panel">
+                <h2 class="panel-title">
+                    <i class="fas fa-question-circle" style="margin-right: 10px;"></i>
+                    Have Questions?
+                </h2>
+                
+                <p style="color: #475569; margin-bottom: 30px; font-size: 1.1rem;">
+                    Fill out the form below and we'll get back to you.
+                </p>
+                
+                <form id="questionForm">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-user" style="margin-right: 8px;"></i>
+                            Full Name
+                        </label>
+                        <input type="text" class="form-input" placeholder="Enter your name" id="name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                            Email Address
+                        </label>
+                        <input type="email" class="form-input" placeholder="Enter your email" id="email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-phone" style="margin-right: 8px;"></i>
+                            Phone Number
+                        </label>
+                        <input type="tel" class="form-input" placeholder="Enter your phone" id="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-tag" style="margin-right: 8px;"></i>
+                            Subject
+                        </label>
+                        <select class="form-select" id="subject">
+                            <option value="" selected disabled>Select a subject</option>
+                            <option value="general">General Question</option>
+                            <option value="support">Support Request</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-comment" style="margin-right: 8px;"></i>
+                            Your Question
+                        </label>
+                        <textarea class="form-textarea" placeholder="Type your question here..." id="message"></textarea>
+                    </div>
+                    
+                    <!-- Form Action Buttons -->
+                    <div class="btn-group">
+                        <button type="submit" class="action-btn" id="sendMessageBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                        <button type="button" class="action-btn secondary" id="clearBtn">
+                            <i class="fas fa-undo"></i>
+                            Clear
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Footer Buttons -->
+                <div class="form-footer">
+                    <a href="tel:5164441448" class="footer-btn call-btn">
+                        <i class="fas fa-phone-alt"></i>
+                        Call Now: (516) 444-1448
+                    </a>
+                    
+                    <button class="footer-btn share-btn" id="shareBtn">
+                        <i class="fas fa-share-alt"></i>
+                        Share This Page
+                    </button>
+                    
+                    <a href="https://leedollsboutique.taniadomingue.multisiteadmin.com/collections" class="footer-btn website-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-globe"></i>
+                        Visit Our Website
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Panel - Estimate Calculator -->
+            <div class="panel">
+                <h2 class="panel-title">
+                    <i class="fas fa-calculator" style="margin-right: 10px;"></i>
+                    Estimate Calculator
+                </h2>
+                
+                <div class="items-container">
+                    <div class="estimate-dropdown-container">
+                        <label class="estimate-label">
+                            <i class="fas fa-box"></i>
+                            Select Items to Estimate:
+                        </label>
+                        <select class="estimate-select" id="itemSelect">
+                            <option value="" selected disabled>-- Choose an item --</option>
+                            <option value="29.99" data-name="Basic Service Package">Basic Service Package - $29.99</option>
+                            <option value="59.99" data-name="Standard Service Package">Standard Service Package - $59.99</option>
+                            <option value="99.99" data-name="Premium Service Package">Premium Service Package - $99.99</option>
+                            <option value="149.99" data-name="Deluxe Service Package">Deluxe Service Package - $149.99</option>
+                            <option value="199.99" data-name="Professional Consultation">Professional Consultation - $199.99</option>
+                            <option value="49.99" data-name="Maintenance Plan">Maintenance Plan - $49.99</option>
+                        </select>
+                        
+                        <button class="add-item-btn" id="addItemBtn">
+                            <i class="fas fa-plus-circle"></i>
+                            Add to Estimate
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Selected Items List -->
+                <div class="selected-items-list" id="selectedItemsList">
+                    <h4>
+                        <i class="fas fa-shopping-cart"></i>
+                        Selected Items
+                    </h4>
+                    <div id="selectedItemsContainer">
+                        <p style="color: #94a3b8; text-align: center; padding: 20px;">
+                            <i class="fas fa-arrow-up" style="display: block; font-size: 2rem; margin-bottom: 10px;"></i>
+                            Select items from the dropdown above
+                        </p>
+                    </div>
+                    <div class="total-row" id="totalRow" style="display: none;">
+                        <span>Total Estimate:</span>
+                        <span id="totalAmount">$0.00</span>
+                    </div>
+                </div>
+                
+                <!-- Estimate Display -->
+                <div class="estimate-display" id="estimateDisplay">
+                    <i class="fas fa-calculator"></i>
+                    <div>Your Estimated Total</div>
+                    <div class="estimate-amount" id="estimateAmount">$0.00</div>
+                </div>
+                
+                <button class="reset-btn" id="resetBtn">
+                    <i class="fas fa-redo-alt"></i>
+                    Clear All Items
+                </button>
+                
+                <button class="mobile-back-btn" id="backToForm">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Form
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Panel sliding for mobile with smooth scroll to header
+        const panelsWrapper = document.getElementById('panelsWrapper');
+        const navToForm = document.getElementById('navToForm');
+        const navToItems = document.getElementById('navToItems');
+        const backToForm = document.getElementById('backToForm');
+        const header = document.getElementById('pageHeader');
+        const PHONE_NUMBER = "5164441448";
+        let isMobile = window.innerWidth <= 900;
+        
+        function updateMobileView() {
+            isMobile = window.innerWidth <= 900;
+            if (!isMobile) {
+                panelsWrapper.style.transform = 'none';
+            }
+        }
+        
+        window.addEventListener('resize', updateMobileView);
+        
+        function slideToForm() {
+            if (isMobile) {
+                panelsWrapper.style.transform = 'translateX(0)';
+                navToForm.classList.add('active');
+                navToItems.classList.remove('active');
+                
+                // Smooth scroll to header
+                setTimeout(() => {
+                    header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+            window.location.hash = '#form';
+        }
+        
+        function slideToItems() {
+            if (isMobile) {
+                panelsWrapper.style.transform = 'translateX(-50%)';
+                navToForm.classList.remove('active');
+                navToItems.classList.add('active');
+            }
+            window.location.hash = '#items';
+        }
+        
+        navToForm.addEventListener('click', slideToForm);
+        navToItems.addEventListener('click', slideToItems);
+        backToForm.addEventListener('click', slideToForm);
+        
+        // Form handling with SMS
+        const questionForm = document.getElementById('questionForm');
+        const clearBtn = document.getElementById('clearBtn');
+        const sendMessageBtn = document.getElementById('sendMessageBtn');
+        
+        questionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields (Name, Email, and Message)');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Get subject text
+            const subjectSelect = document.getElementById('subject');
+            const subjectText = subjectSelect.options[subjectSelect.selectedIndex]?.text || 'Not specified';
+            
+            // Create SMS message
+            let smsMessage = `NEW QUESTION from ${name}\n`;
+            smsMessage += `Email: ${email}\n`;
+            if (phone) smsMessage += `Phone: ${phone}\n`;
+            smsMessage += `Subject: ${subjectText}\n`;
+            smsMessage += `Message: ${message}`;
+            
+            // Encode for SMS
+            const encodedMessage = encodeURIComponent(smsMessage);
+            
+            // Check if mobile device
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Open SMS app
+                window.location.href = `sms:${PHONE_NUMBER}?body=${encodedMessage}`;
+                
+                // Also show success message
+                setTimeout(() => {
+                    alert('Message ready to send via SMS!');
+                }, 500);
+            } else {
+                // On desktop, copy to clipboard
+                navigator.clipboard.writeText(smsMessage).then(() => {
+                    alert(`Message copied to clipboard!\n\nYou can send this SMS to: ${PHONE_NUMBER}\n\n${smsMessage}`);
+                }).catch(() => {
+                    alert(`Please send this SMS to: ${PHONE_NUMBER}\n\n${smsMessage}`);
+                });
+            }
+            
+            // Optional: Auto-slide to items panel on mobile after submission
+            if (isMobile && confirm('Go to estimate calculator?')) {
+                setTimeout(slideToItems, 500);
+            }
+        });
+        
+        clearBtn.addEventListener('click', function() {
+            if (confirm('Clear all form fields?')) {
+                questionForm.reset();
+            }
+        });
+        
+        // Share button functionality
+        document.getElementById('shareBtn').addEventListener('click', function() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Universal Template',
+                    text: 'Check out this awesome template!',
+                    url: url
+                }).catch(() => {
+                    copyToClipboard(url);
+                });
+            } else {
+                copyToClipboard(url);
+            }
+        });
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(() => {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Link copied!');
+            });
+        }
+        
+        // Estimate Calculator with Dropdown
+        const itemSelect = document.getElementById('itemSelect');
+        const addItemBtn = document.getElementById('addItemBtn');
+        const selectedItemsContainer = document.getElementById('selectedItemsContainer');
+        const totalRow = document.getElementById('totalRow');
+        const totalAmount = document.getElementById('totalAmount');
+        const estimateAmount = document.getElementById('estimateAmount');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        let selectedItems = [];
+        
+        // Function to add item from dropdown
+        function addItem() {
+            const selectedOption = itemSelect.options[itemSelect.selectedIndex];
+            
+            if (!itemSelect.value) {
+                alert('Please select an item first!');
+                return;
+            }
+            
+            const price = parseFloat(itemSelect.value);
+            const name = selectedOption.dataset.name;
+            
+            // Add to selected items array
+            selectedItems.push({
+                name: name,
+                price: price,
+                id: Date.now() + Math.random() // Unique ID for removal
+            });
+            
+            // Update display
+            updateSelectedItemsDisplay();
+            updateEstimate();
+            
+            // Reset dropdown
+            itemSelect.selectedIndex = 0;
+        }
+        
+        // Function to remove item
+        function removeItem(id) {
+            selectedItems = selectedItems.filter(item => item.id !== id);
+            updateSelectedItemsDisplay();
+            updateEstimate();
+        }
+        
+        // Update selected items display
+        function updateSelectedItemsDisplay() {
+            if (selectedItems.length === 0) {
+                selectedItemsContainer.innerHTML = '<p style="color: #94a3b8; text-align: center; padding: 20px;"><i class="fas fa-arrow-up" style="display: block; font-size: 2rem; margin-bottom: 10px;"></i>Select items from the dropdown above</p>';
+                totalRow.style.display = 'none';
+                return;
+            }
+            
+            let html = '';
+            selectedItems.forEach(item => {
+                html += `
+                    <div class="selected-item">
+                        <div class="item-info">
+                            <i class="fas fa-box" style="color: #64748b;"></i>
+                            <span class="item-name">${item.name}</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="item-price">$${item.price.toFixed(2)}</span>
+                            <span class="remove-item" onclick="removeItem(${item.id})">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            selectedItemsContainer.innerHTML = html;
+            totalRow.style.display = 'flex';
+        }
+        
+        // Update estimate total
+        function updateEstimate() {
+            const total = selectedItems.reduce((sum, item) => sum + item.price, 0);
+            totalAmount.textContent = `$${total.toFixed(2)}`;
+            estimateAmount.textContent = `$${total.toFixed(2)}`;
+        }
+        
+        // Make removeItem function globally available
+        window.removeItem = removeItem;
+        
+        // Add item button click
+        addItemBtn.addEventListener('click', addItem);
+        
+        // Enter key in dropdown
+        itemSelect.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addItem();
+            }
+        });
+        
+        // Reset button
+        resetBtn.addEventListener('click', function() {
+            if (selectedItems.length === 0) {
+                alert('No items to clear.');
+                return;
+            }
+            
+            if (confirm('Clear all selected items?')) {
+                selectedItems = [];
+                updateSelectedItemsDisplay();
+                updateEstimate();
+            }
+        });
+        
+        // Initialize
+        updateMobileView();
+        
+        // Handle hash navigation
+        if (window.location.hash === '#items') {
+            setTimeout(slideToItems, 100);
+        } else {
+            setTimeout(slideToForm, 100);
+        }
+    </script>
+</body>
+</html>
